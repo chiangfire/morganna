@@ -2,8 +2,9 @@ package com.firecode.morganna;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration;
 
-@SpringBootApplication
+@SpringBootApplication(exclude={CassandraAutoConfiguration.class})
 public class Application {
 	
 	public static void main(String[] args) {
