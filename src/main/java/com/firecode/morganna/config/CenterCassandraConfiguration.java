@@ -1,8 +1,10 @@
 package com.firecode.morganna.config;
 
+import static com.firecode.morganna.config.CenterCassandraConfiguration.BASE_PACKAGES_0;
+
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.cassandra.CassandraProperties;
 import org.springframework.boot.context.properties.PropertyMapper;
@@ -11,14 +13,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.cassandra.config.AbstractReactiveCassandraConfiguration;
 import org.springframework.data.cassandra.config.CassandraClusterFactoryBean;
 import org.springframework.data.cassandra.config.SchemaAction;
-import org.springframework.data.cassandra.core.convert.CassandraCustomConversions;
 import org.springframework.data.cassandra.repository.config.EnableReactiveCassandraRepositories;
-import org.springframework.data.convert.CustomConversions;
 
-import static com.firecode.morganna.config.CenterCassandraConfiguration.BASE_PACKAGES_0;
 import com.datastax.driver.core.PoolingOptions;
 import com.datastax.driver.core.SocketOptions;
-import com.firecode.morganna.framework.EmptyPrimaryToSnowflakeConverter;
+import com.firecode.morganna.framework.cassandra.BaseReactiveCassandraRepository;
 
 /**
  * 异步 cassandra 驱动配置 spring boot default config CassandraAutoConfiguration
@@ -51,7 +50,7 @@ import com.firecode.morganna.framework.EmptyPrimaryToSnowflakeConverter;
  *
  */
 @Configuration
-@EnableReactiveCassandraRepositories(basePackages = { BASE_PACKAGES_0 })
+@EnableReactiveCassandraRepositories(basePackages = { BASE_PACKAGES_0 },repositoryBaseClass=BaseReactiveCassandraRepository.class)
 public class CenterCassandraConfiguration extends AbstractReactiveCassandraConfiguration {
 	//repository 包路径
 	public static final String BASE_PACKAGES_0 = "com.firecode.morganna.repository";
@@ -160,17 +159,5 @@ public class CenterCassandraConfiguration extends AbstractReactiveCassandraConfi
 
 		return cassandraProperties.getPort();
 	}
-	
-	/**
-	 * 转换器配置
-	 */
-	@Bean
-	@Override
-	public CustomConversions customConversions() {
-		//自动生成ID
-		EmptyPrimaryToSnowflakeConverter esConverter = new EmptyPrimaryToSnowflakeConverter();
-		return new CassandraCustomConversions(Arrays.asList(esConverter));
-	}
-	
 
 }

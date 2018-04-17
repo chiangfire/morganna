@@ -9,25 +9,26 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 @Primary
 @Configuration()
 @PropertySource("classpath:cassandra.properties")
 @ConfigurationProperties(prefix = "center.data.cassandra")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class CenterCassandraProperties extends CassandraProperties{
 	
 	/**
 	 * 应用启动时执行脚本
 	 */
 	private List<String> startupScripts = new ArrayList<>(3);
-
-	public List<String> getStartupScripts() {
-		
-		return startupScripts;
-	}
-
-	public void setStartupScripts(List<String> startupScripts) {
-		
-		this.startupScripts = startupScripts;
-	}
 	
 }
