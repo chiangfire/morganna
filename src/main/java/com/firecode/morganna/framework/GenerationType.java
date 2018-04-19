@@ -12,11 +12,10 @@ public enum GenerationType implements IdGenerator{
 	 * Twitter Snowflake 算法
 	 */
 	SNOWFLAKE(){
-		private final IdGenerator factory = new IPIdGenerator();
 		@Override
 		public Serializable generate() {
 			
-			return factory.generate();
+			return IPIdGenerator.getInstance().generate();
 		}
 	};
 }

@@ -86,7 +86,7 @@ public class CenterCassandraConfiguration extends AbstractReactiveCassandraConfi
 	@Override
 	public SchemaAction getSchemaAction() {
 		
-		return SchemaAction.CREATE_IF_NOT_EXISTS;
+		return SchemaAction.RECREATE;
 	}
 
 	/**
