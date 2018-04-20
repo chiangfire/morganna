@@ -1,9 +1,6 @@
 package com.firecode.morganna.framework;
 import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.function.BiConsumer;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;
@@ -64,13 +61,10 @@ public class WebFluxExceptionHandler extends AbstractErrorWebExceptionHandler {
 		Throwable error = errorAttributes.getError(request);
 		HttpStatus errorStatus = determineHttpStatus(error);
 		return saveLog(request, error,errorStatus).flatMap(errorLog -> {
-			Map<String,Object> errorMap = new LinkedHashMap<>(2);
-			errorMap.put("status", errorLog.getStatus());
-			errorMap.put("error", errorLog.getError());
-			errorMap.put("message", errorLog.getMessage());
+			String result = ResponseHelper.getResultStr(errorLog.getStatus(),errorLog.getError(),errorLog.getId().toString());
 			return ServerResponse.status(errorLog.getStatus())
 					.contentType(MediaType.APPLICATION_JSON_UTF8)
-					.body(BodyInserters.fromObject(errorMap))
+					.body(BodyInserters.fromObject(result))
 					.doOnNext((resp) -> logError(request, errorStatus));
 		});
 	}

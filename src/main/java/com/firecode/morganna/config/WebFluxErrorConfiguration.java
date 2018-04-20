@@ -17,15 +17,13 @@ import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
 import org.springframework.data.cassandra.core.ReactiveCassandraOperations;
 import org.springframework.http.codec.ServerCodecConfigurer;
-import org.springframework.web.reactive.config.WebFluxConfigurer;
 import org.springframework.web.reactive.result.view.ViewResolver;
 
 import com.firecode.morganna.framework.WebFluxExceptionHandler;
 
-
 @Configuration
 @AutoConfigureAfter(ErrorWebFluxAutoConfiguration.class)
-public class ReactiveWebConfiguration implements WebFluxConfigurer{
+public class WebFluxErrorConfiguration {
 	
 	private final ApplicationContext applicationContext;
 
@@ -38,7 +36,7 @@ public class ReactiveWebConfiguration implements WebFluxConfigurer{
 	@Autowired
 	private ReactiveCassandraOperations reactiveCassandraTemplate;
 
-	public ReactiveWebConfiguration(ResourceProperties resourceProperties,
+	public WebFluxErrorConfiguration(ResourceProperties resourceProperties,
 			                        ObjectProvider<List<ViewResolver>> viewResolversProvider,
 			                        ServerCodecConfigurer serverCodecConfigurer,
 			                        ApplicationContext applicationContext) {
@@ -64,5 +62,5 @@ public class ReactiveWebConfiguration implements WebFluxConfigurer{
 		exceptionHandler.setMessageReaders(this.serverCodecConfigurer.getReaders());
 		return exceptionHandler;
 	}
-	
+
 }
