@@ -11,9 +11,9 @@ import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.web.reactive.config.DelegatingWebFluxConfiguration;
 import org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler;
 
-import com.firecode.morganna.framework.CustomCharSequenceEncoder;
-import com.firecode.morganna.framework.CustomEncoderHttpMessageWriter;
-import com.firecode.morganna.framework.CustomJackson2JsonEncoder;
+import com.firecode.morganna.framework.support.CustomCharSequenceEncoder;
+import com.firecode.morganna.framework.support.CustomEncoderHttpMessageWriter;
+import com.firecode.morganna.framework.support.CustomJackson2JsonEncoder;
 
 @Configuration
 public class WebFluxRoutineConfiguration extends DelegatingWebFluxConfiguration {

@@ -1,6 +1,8 @@
-package com.firecode.morganna.framework;
+package com.firecode.morganna.framework.domain;
 
 import java.lang.reflect.Method;
+
+import com.firecode.morganna.framework.GenerationType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

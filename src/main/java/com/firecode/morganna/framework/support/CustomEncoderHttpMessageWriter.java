@@ -1,4 +1,4 @@
-package com.firecode.morganna.framework;
+package com.firecode.morganna.framework.support;
 
 import java.util.Collections;
 import java.util.HashMap;

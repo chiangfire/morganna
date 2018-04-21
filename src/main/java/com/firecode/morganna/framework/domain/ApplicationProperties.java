@@ -1,4 +1,4 @@
-package com.firecode.morganna.framework;
+package com.firecode.morganna.framework.domain;
 
 import java.util.List;
 

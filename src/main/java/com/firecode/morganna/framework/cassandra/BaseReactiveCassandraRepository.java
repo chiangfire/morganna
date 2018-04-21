@@ -3,6 +3,7 @@ package com.firecode.morganna.framework.cassandra;
 import java.beans.PropertyDescriptor;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.reactivestreams.Publisher;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.data.cassandra.core.ReactiveCassandraOperations;
@@ -11,8 +12,8 @@ import org.springframework.data.cassandra.repository.support.SimpleReactiveCassa
 import org.springframework.util.Assert;
 import org.springframework.util.ReflectionUtils;
 
-import com.firecode.morganna.framework.PrimaryKeyMethodWrap;
 import com.firecode.morganna.framework.annotation.GeneratedValue;
+import com.firecode.morganna.framework.domain.PrimaryKeyMethodWrap;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
