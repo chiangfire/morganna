@@ -5,8 +5,8 @@ import static com.firecode.morganna.config.CenterCassandraConfiguration.BASE_PAC
 import java.time.Duration;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.cassandra.CassandraProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.context.properties.PropertyMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -50,6 +50,7 @@ import com.firecode.morganna.framework.cassandra.BaseReactiveCassandraRepository
  *
  */
 @Configuration
+@EnableConfigurationProperties({CenterCassandraProperties.class})
 @EnableReactiveCassandraRepositories(basePackages = { BASE_PACKAGES_0 },repositoryBaseClass=BaseReactiveCassandraRepository.class)
 public class CenterCassandraConfiguration extends AbstractReactiveCassandraConfiguration {
 	//repository 包路径
@@ -57,8 +58,12 @@ public class CenterCassandraConfiguration extends AbstractReactiveCassandraConfi
 	//entity bean 包路径
 	public static final String ENTITY_BASE_PACKAGES_0 = "com.firecode.morganna.domain";
 
-	@Autowired
-	private CenterCassandraProperties cassandraProperties;
+	private final CenterCassandraProperties cassandraProperties;
+	
+	public CenterCassandraConfiguration(CenterCassandraProperties centerCassandraProperties){
+		
+		this.cassandraProperties = centerCassandraProperties;
+	}
 
 	/**
 	 * 应用启动时执行脚本

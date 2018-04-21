@@ -65,6 +65,7 @@ public class ErrorLog {
 	@Column("method_name")
 	private String methodName;
 	
+	@CassandraType(type=Name.TEXT)
 	private String trace;
 	
 }

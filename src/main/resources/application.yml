@@ -11,4 +11,10 @@ logging:
 spring:
   application: 
     name: morganna
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration,
+             org.springframework.boot.autoconfigure.data.cassandra.CassandraDataAutoConfiguration,
+             org.springframework.boot.autoconfigure.data.cassandra.CassandraReactiveDataAutoConfiguration,
+             org.springframework.boot.autoconfigure.data.cassandra.CassandraRepositoriesAutoConfiguration,
+             org.springframework.boot.autoconfigure.data.cassandra.CassandraReactiveRepositoriesAutoConfiguration
     
