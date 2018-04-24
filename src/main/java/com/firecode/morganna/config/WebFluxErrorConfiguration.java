@@ -19,7 +19,7 @@ import org.springframework.data.cassandra.core.ReactiveCassandraOperations;
 import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.web.reactive.result.view.ViewResolver;
 
-import com.firecode.morganna.framework.WebFluxExceptionHandler;
+import com.firecode.morganna.config.support.WebFluxExceptionHandler;
 
 @Configuration
 @AutoConfigureAfter(ErrorWebFluxAutoConfiguration.class)

@@ -17,7 +17,7 @@ import org.springframework.data.cassandra.repository.config.EnableReactiveCassan
 
 import com.datastax.driver.core.PoolingOptions;
 import com.datastax.driver.core.SocketOptions;
-import com.firecode.morganna.framework.cassandra.BaseReactiveCassandraRepository;
+import com.firecode.kabouros.cassandra.BaseReactiveCassandraRepository;
 
 /**
  * 异步 cassandra 驱动配置 spring boot default config CassandraAutoConfiguration

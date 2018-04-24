@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 
-import com.firecode.morganna.framework.cassandra.BaseCassandraProperties;
+import com.firecode.kabouros.cassandra.BaseCassandraProperties;
 
 @Primary
 @Configuration()

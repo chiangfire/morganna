@@ -10,7 +10,7 @@ import org.springframework.data.cassandra.core.mapping.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.datastax.driver.core.DataType.Name;
-import com.firecode.morganna.framework.annotation.GeneratedValue;
+import com.firecode.kabouros.common.annotation.GeneratedValue;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
