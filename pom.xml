@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.firecode</groupId>
@@ -7,16 +6,16 @@
 		<version>0.0.1-RELEASE</version>
 	</parent>
 	<artifactId>morganna</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1-RELEASE</version>
 	<packaging>jar</packaging>
 	<name>morganna</name>
-	<url></url>
+	<url />
 
 	<scm>
 		<connection>scm:git:git://github.com/jiangcihuo/morganna.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/jiangcihuo/morganna.git</developerConnection>
 		<url>https://github.com/jiangcihuo/morganna</url>
-		<tag>HEAD</tag>
+		<tag>v0.0.1-RELEASE</tag>
 	</scm>
 
 	<dependencies>
