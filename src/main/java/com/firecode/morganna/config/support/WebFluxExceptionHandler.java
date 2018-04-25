@@ -23,7 +23,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.firecode.kabouros.common.keygen.IPIdGenerator;
 import com.firecode.kabouros.common.util.ErrorUtils;
-import com.firecode.kabouros.gateway.ResponseHelper;
+import com.firecode.kabouros.webflux.ResponseHelper;
 import com.firecode.morganna.domain.common.ErrorLog;
 
 import reactor.core.publisher.Mono;

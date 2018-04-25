@@ -4,18 +4,25 @@
 	<parent>
 		<groupId>com.firecode</groupId>
 		<artifactId>kabouros</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1-RELEASE</version>
 	</parent>
 	<artifactId>morganna</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>morganna</name>
 	<url></url>
 
+	<scm>
+		<connection>scm:git:git://github.com/jiangcihuo/morganna.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/jiangcihuo/morganna.git</developerConnection>
+		<url>https://github.com/jiangcihuo/morganna</url>
+		<tag>HEAD</tag>
+	</scm>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.firecode</groupId>
-			<artifactId>kabouros-gateway</artifactId>
+			<artifactId>kabouros-webflux</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.firecode</groupId>
@@ -29,6 +36,26 @@
 
 	<build>
 		<plugins>
+			<!-- 自动部署到远程仓库 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<retryFailedDeploymentCount>10</retryFailedDeploymentCount>
+					<!-- 跳过部署到远程仓库，如果有搭建私库就不要跳过了 -->
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.3</version>
+				<configuration>
+					<useReleaseProfile>false</useReleaseProfile>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

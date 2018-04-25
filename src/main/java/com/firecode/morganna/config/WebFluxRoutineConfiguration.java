@@ -11,9 +11,9 @@ import org.springframework.http.codec.ServerCodecConfigurer;
 import org.springframework.web.reactive.config.DelegatingWebFluxConfiguration;
 import org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler;
 
-import com.firecode.kabouros.gateway.support.CustomCharSequenceEncoder;
-import com.firecode.kabouros.gateway.support.CustomEncoderHttpMessageWriter;
-import com.firecode.kabouros.gateway.support.CustomJackson2JsonEncoder;
+import com.firecode.kabouros.webflux.support.CustomCharSequenceEncoder;
+import com.firecode.kabouros.webflux.support.CustomEncoderHttpMessageWriter;
+import com.firecode.kabouros.webflux.support.CustomJackson2JsonEncoder;
 
 @Configuration
 public class WebFluxRoutineConfiguration extends DelegatingWebFluxConfiguration {
