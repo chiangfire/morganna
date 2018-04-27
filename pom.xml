@@ -12,9 +12,9 @@
 	<url />
 
 	<scm>
-		<connection>scm:git:git://github.com/jiangcihuo/morganna.git</connection>
-		<developerConnection>scm:git:ssh://git@github.com/jiangcihuo/morganna.git</developerConnection>
-		<url>https://github.com/jiangcihuo/morganna</url>
+		<connection>scm:git:git://github.com/chiangfire/morganna.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/chiangfire/morganna.git</developerConnection>
+		<url>https://github.com/chiangfire/morganna</url>
 		<tag>HEAD</tag>
 	</scm>
 
