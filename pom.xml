@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.firecode</groupId>
 		<artifactId>kabouros</artifactId>
-		<version>0.0.1-RELEASE</version>
+		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>morganna</artifactId>
 	<version>0.0.2-SNAPSHOT</version>
@@ -17,6 +17,10 @@
 		<url>https://github.com/chiangfire/morganna</url>
 		<tag>HEAD</tag>
 	</scm>
+	
+	<properties>
+	    <alipay-sdk.version>20180309170622</alipay-sdk.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -27,10 +31,27 @@
 			<groupId>com.firecode</groupId>
 			<artifactId>kabouros-cassandra</artifactId>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency> -->
+		<dependency>
+			<groupId>com.firecode</groupId>
+			<artifactId>kabouros-security</artifactId>
+		</dependency>
+	    <dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-starter-zookeeper-config</artifactId>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.springframework.cloud</groupId>
+	        <artifactId>spring-cloud-zookeeper-discovery</artifactId>
+	    </dependency>
+	    <dependency>
+		    <groupId>org.apache.curator</groupId>
+		    <artifactId>curator-x-discovery</artifactId>
+		</dependency>
+	    <dependency>
+		    <groupId>com.alipay</groupId>
+		    <artifactId>alipay-sdk</artifactId>
+		    <version>${alipay-sdk.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>

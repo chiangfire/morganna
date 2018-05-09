@@ -8,9 +8,11 @@ logging:
     org.springframework.security: INFO
 #    org.springframework.boot.autoconfigure: DEBUG
   
+morganna:
+  application:
+  antplatform:
+    url:xxx
 spring:
-  application: 
-    name: morganna
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration,
              org.springframework.boot.autoconfigure.data.cassandra.CassandraDataAutoConfiguration,
