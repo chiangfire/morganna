@@ -1,4 +1,6 @@
-package com.firecode.morganna.security.alipay;
+package com.firecode.morganna.security;
+
+import static com.firecode.morganna.security.AlipayAuthenticationDispatcherHandler.ALIPAY_AUTH_PARAM_STATE;
 
 import java.util.Map;
 import java.util.function.Function;
@@ -11,20 +13,19 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebSession;
 import reactor.core.publisher.Mono;
-import static com.firecode.morganna.security.alipay.AlipaySecurityAuthenticationHandler.ALIPAY_AUTH_PARAM_STATE;
 /**
  * 支付宝认证参数转换器
  * @author JIANG
  *
  */
-public class ServerAlipayLoginAuthenticationConverter implements Function<ServerWebExchange, Mono<Authentication>>{
+public class AlipayLoginParamConverter implements Function<ServerWebExchange, Mono<Authentication>>{
 	
 
 	@Override
 	public Mono<Authentication> apply(ServerWebExchange exchange) {
 		MultiValueMap<String, String> queryParams = exchange.getRequest().getQueryParams();
-		String authCode = queryParams.getFirst(AlipaySecurityAuthenticationHandler.ALIPAY_PARAM_AUTH_CODE);
-		String state = queryParams.getFirst(AlipaySecurityAuthenticationHandler.ALIPAY_PARAM_STATE);
+		String authCode = queryParams.getFirst(AlipayAuthenticationDispatcherHandler.ALIPAY_PARAM_AUTH_CODE);
+		String state = queryParams.getFirst(AlipayAuthenticationDispatcherHandler.ALIPAY_PARAM_STATE);
 		return exchange.getSession()
 				       .map(WebSession::getAttributes)
 				       .flatMap(attrs -> authenticationParam(attrs,authCode,state));

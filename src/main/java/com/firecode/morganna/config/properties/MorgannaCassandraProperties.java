@@ -1,4 +1,4 @@
-package com.firecode.morganna.config;
+package com.firecode.morganna.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import com.firecode.kabouros.cassandra.BaseCassandraProperties;
 @Primary
 @Configuration()
 @PropertySource("classpath:cassandra.properties")
-@ConfigurationProperties(prefix = "center.data.cassandra")
-public class CenterCassandraProperties extends BaseCassandraProperties{
+@ConfigurationProperties(prefix = "morganna.data.cassandra")
+public class MorgannaCassandraProperties extends BaseCassandraProperties{
 	
 }

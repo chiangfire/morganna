@@ -1,10 +1,10 @@
-package com.firecode.morganna.service.alipay;
+package com.firecode.morganna.service;
 
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.response.AlipaySystemOauthTokenResponse;
 import com.firecode.morganna.domain.alipay.AlipayEmpowerRecord;
 import com.firecode.morganna.domain.alipay.AlipayUser;
-import com.firecode.morganna.security.alipay.AlipayAuthInfo;
+import com.firecode.morganna.security.AlipayAuthInfo;
 
 import reactor.core.publisher.Mono;
 
@@ -23,7 +23,7 @@ public interface AlipayEmpowerService {
 	 */
 	public Mono<AlipayUser> loadAlipayUser(String authCode) throws AlipayApiException;
 	/**
-	 * 查询支付宝授权登陆信息及第三方应用授权记录
+	 * 查询支付宝用户认证信息
 	 * 注意每个authCode只能使用一次
 	 * @param authCode
 	 * @throws AlipayApiException
@@ -32,7 +32,7 @@ public interface AlipayEmpowerService {
 	public Mono<AlipayAuthInfo> queryAlipayAuthInfo(String authCode) throws AlipayApiException;
 	
 	/**
-	 * 使用auth_code换取access_token，user_id
+	 * 使用auth_code换取用户access_token，user_id
 	 * 注意每个authCode只能使用一次
 	 * @param authCode
 	 * @param isRefresh  是不是刷新access_token
@@ -41,7 +41,7 @@ public interface AlipayEmpowerService {
 	 */
 	public AlipaySystemOauthTokenResponse exchangeAccessToken(String authCode,boolean isRefresh)throws AlipayApiException;
 	/**
-	 * 使用app_auth_code换取app_auth_token
+	 * 使用app_auth_code换取用户app_auth_token
 	 * @param appAuthCode 只能使用一次
 	 * @param isRefresh   是不是刷新app_auth_token
 	 * @return
@@ -49,25 +49,19 @@ public interface AlipayEmpowerService {
 	 * 注意：appAuthCode 只能使用一次
 	 * app_auth_token有效期为365天，刷新后重新计时
 	 */
-	public Mono<AlipayEmpowerRecord> exchangeAlipayEmpowerRecord(String appAuthCode,boolean isRefresh) throws AlipayApiException;
+	public Mono<AlipayEmpowerRecord> exchangeAlipayEmpowerRecord(String appAuthCode,boolean isRefresh);
 	/**
 	 * 查询支付宝用户授权记录
 	 * @param userId          支付宝用户ID
 	 * @return
 	 */
-	public AlipayEmpowerRecord queryUserEmpowerRecord(String userId);
+	public Mono<AlipayEmpowerRecord> queryUserEmpowerRecord(String userId);
 	
 	/**
 	 * 查询支付宝用户信息
 	 * @param userId          支付宝用户ID
 	 * @return
 	 */
-	public AlipayUser queryAlipayUser(String userId);
-	
-	/**
-	 * 添加 或 更新支付宝用户
-	 * @param alipayUser
-	 */
-	public void addOrUpdateAlipayUser(AlipayUser alipayUser);
+	public Mono<AlipayUser> queryAlipayUser(String userId);
 	
 }

@@ -1,4 +1,4 @@
-package com.firecode.morganna.config.alipay;
+package com.firecode.morganna.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

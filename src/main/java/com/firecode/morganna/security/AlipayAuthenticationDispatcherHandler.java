@@ -1,4 +1,4 @@
-package com.firecode.morganna.security.alipay;
+package com.firecode.morganna.security;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
@@ -22,7 +22,7 @@ import org.springframework.web.server.WebSession;
 import com.firecode.kabouros.common.domain.ApplicationProperties;
 import com.firecode.kabouros.common.keygen.IPIdGenerator;
 import com.firecode.kabouros.security.SecurityAuthenticationHandler;
-import com.firecode.morganna.config.alipay.AntplatformProperties;
+import com.firecode.morganna.config.properties.AntplatformProperties;
 
 import io.netty.util.CharsetUtil;
 import reactor.core.publisher.Mono;
@@ -32,9 +32,9 @@ import reactor.core.publisher.Mono;
  * @author JIANG
  *
  */
-public class AlipaySecurityAuthenticationHandler implements SecurityAuthenticationHandler {
+public class AlipayAuthenticationDispatcherHandler implements SecurityAuthenticationHandler {
 	
-	private Log logger = LogFactory.getLog(AlipaySecurityAuthenticationHandler.class);
+	private Log logger = LogFactory.getLog(AlipayAuthenticationDispatcherHandler.class);
 	
 	public static final String ALIPAY_AUTH_PARAM_STATE = "alipay_auth_param_state";
 	public static final String ALIPAY_PARAM_APP_ID = "app_id";
@@ -56,7 +56,7 @@ public class AlipaySecurityAuthenticationHandler implements SecurityAuthenticati
 	//本系统支付宝用户登陆地址
 	private final String loginAddress;
 	
-	public AlipaySecurityAuthenticationHandler(AntplatformProperties antplatformProperties,ApplicationProperties applicationProperties) throws UnsupportedEncodingException {
+	public AlipayAuthenticationDispatcherHandler(AntplatformProperties antplatformProperties,ApplicationProperties applicationProperties) throws UnsupportedEncodingException {
 		Assert.notNull(antplatformProperties, "antplatformProperties cannot be null");
 		Assert.notNull(applicationProperties, "applicationProperties cannot be null");
 		this.loginAddress = URLEncoder.encode(String.join("", applicationProperties.getHost(),applicationProperties.getLoginLocation()), CharsetUtil.UTF_8.name());
@@ -75,12 +75,13 @@ public class AlipaySecurityAuthenticationHandler implements SecurityAuthenticati
 
 	
 	/**
-	 * 认证
+	 * 未认证
 	 */
 	@Override
 	public Mono<Void> commence(ServerWebExchange exchange, AuthenticationException exception) {
 		String state = String.join("", IPIdGenerator.getInstance().generate().toString());
 		URI location = URI.create(String.join("", authLocation,"&",ALIPAY_PARAM_STATE,"=",state));
+		logger.info(String.join("：", "跳转至支付宝登陆",location.toString()));
 		return exchange.getSession()
 				       .map(WebSession::getAttributes)
 				       .doOnNext(attrs -> attrs.put(ALIPAY_AUTH_PARAM_STATE, state))

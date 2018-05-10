@@ -1,6 +1,6 @@
 package com.firecode.morganna.config;
 
-import static com.firecode.morganna.config.CenterCassandraConfiguration.BASE_PACKAGES_0;
+import static com.firecode.morganna.config.MorgannaCassandraConfiguration.BASE_PACKAGES_0;
 
 import java.time.Duration;
 import java.util.List;
@@ -18,6 +18,7 @@ import org.springframework.data.cassandra.repository.config.EnableReactiveCassan
 import com.datastax.driver.core.PoolingOptions;
 import com.datastax.driver.core.SocketOptions;
 import com.firecode.kabouros.cassandra.BaseReactiveCassandraRepository;
+import com.firecode.morganna.config.properties.MorgannaCassandraProperties;
 
 /**
  * 异步 cassandra 驱动配置 spring boot default config CassandraAutoConfiguration
@@ -50,17 +51,17 @@ import com.firecode.kabouros.cassandra.BaseReactiveCassandraRepository;
  *
  */
 @Configuration
-@EnableConfigurationProperties({CenterCassandraProperties.class})
+@EnableConfigurationProperties({MorgannaCassandraProperties.class})
 @EnableReactiveCassandraRepositories(basePackages = { BASE_PACKAGES_0 },repositoryBaseClass=BaseReactiveCassandraRepository.class)
-public class CenterCassandraConfiguration extends AbstractReactiveCassandraConfiguration {
+public class MorgannaCassandraConfiguration extends AbstractReactiveCassandraConfiguration {
 	//repository 包路径
 	public static final String BASE_PACKAGES_0 = "com.firecode.morganna.repository";
 	//entity bean 包路径
 	public static final String ENTITY_BASE_PACKAGES_0 = "com.firecode.morganna.domain";
 
-	private final CenterCassandraProperties cassandraProperties;
+	private final MorgannaCassandraProperties cassandraProperties;
 	
-	public CenterCassandraConfiguration(CenterCassandraProperties centerCassandraProperties){
+	public MorgannaCassandraConfiguration(MorgannaCassandraProperties centerCassandraProperties){
 		
 		this.cassandraProperties = centerCassandraProperties;
 	}

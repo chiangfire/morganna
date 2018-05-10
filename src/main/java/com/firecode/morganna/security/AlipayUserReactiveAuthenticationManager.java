@@ -1,4 +1,4 @@
-package com.firecode.morganna.security.alipay;
+package com.firecode.morganna.security;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.util.Assert;
 
 import com.alipay.api.AlipayApiException;
-import com.firecode.morganna.service.alipay.AlipayEmpowerService;
+import com.firecode.morganna.service.AlipayEmpowerService;
 
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
@@ -33,6 +33,7 @@ public class AlipayUserReactiveAuthenticationManager implements ReactiveAuthenti
 	public Mono<Authentication> authenticate(Authentication authentication) {
 		final String authCode = authentication.getName();
 		try {
+			//查询支付宝用户认证信息
 			return this.alipayEmpowerService.queryAlipayAuthInfo(authCode)
 				                            .publishOn(Schedulers.parallel())
 				                            .map(alipayAuthInfo -> alipayUserAuthenticationToken(alipayAuthInfo));

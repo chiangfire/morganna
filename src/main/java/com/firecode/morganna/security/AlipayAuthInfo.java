@@ -1,4 +1,4 @@
-package com.firecode.morganna.security.alipay;
+package com.firecode.morganna.security;
 
 import com.firecode.morganna.domain.alipay.AlipayEmpowerRecord;
 
