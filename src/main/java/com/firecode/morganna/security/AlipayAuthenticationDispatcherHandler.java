@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,9 +19,7 @@ import org.springframework.security.web.server.savedrequest.WebSessionServerRequ
 import org.springframework.util.Assert;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebSession;
-
 import com.firecode.kabouros.common.domain.ApplicationProperties;
-import com.firecode.kabouros.common.keygen.IPIdGenerator;
 import com.firecode.kabouros.security.SecurityAuthenticationHandler;
 import com.firecode.morganna.config.properties.AntplatformProperties;
 
@@ -79,7 +78,7 @@ public class AlipayAuthenticationDispatcherHandler implements SecurityAuthentica
 	 */
 	@Override
 	public Mono<Void> commence(ServerWebExchange exchange, AuthenticationException exception) {
-		String state = String.join("", IPIdGenerator.getInstance().generate().toString());
+		String state = UUID.randomUUID().toString().replaceAll("-", "");
 		URI location = URI.create(String.join("", authLocation,"&",ALIPAY_PARAM_STATE,"=",state));
 		logger.info(String.join("：", "跳转至支付宝登陆",location.toString()));
 		return exchange.getSession()

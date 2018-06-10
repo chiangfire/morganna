@@ -25,6 +25,10 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.firecode</groupId>
+			<artifactId>kabouros-boot</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.firecode</groupId>
 			<artifactId>kabouros-webflux</artifactId>
 		</dependency>
 		<dependency>
@@ -51,6 +55,11 @@
 		    <groupId>com.alipay</groupId>
 		    <artifactId>alipay-sdk</artifactId>
 		    <version>${alipay-sdk.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

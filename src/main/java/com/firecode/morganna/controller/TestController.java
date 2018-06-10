@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 @RestController
 public class TestController {
 	
-	@GetMapping("/test")
+	@GetMapping("${server.contextPath}/test")
 	public Mono<String> get(){
 		
 		return Mono.just("测试数据");

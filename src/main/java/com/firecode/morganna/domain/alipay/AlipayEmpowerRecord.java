@@ -47,7 +47,7 @@ public class AlipayEmpowerRecord {
 	private String authAppId;
 	/** 
 	 * 应用授权令牌
-	 * 有效期为365天，刷新后重新计时
+	 * 有效期为365天<现在是永久有效>，刷新后重新计时
 	 */
 	@Column("app_auth_token")
 	@CassandraType(type=Name.VARCHAR)
@@ -66,12 +66,14 @@ public class AlipayEmpowerRecord {
 	@CassandraType(type=Name.TIMESTAMP)
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:MM:ss")
 	private Date authStart;
+	
 	/** 
 	 * 授权失效时间
 	 */
 	@Column("auth_end")
 	@CassandraType(type=Name.TIMESTAMP)
 	@DateTimeFormat(pattern="yyyy-MM-dd hh:MM:ss")
+	@Deprecated
 	private Date authEnd;
 	/** 
 	 * valid：有效状态；invalid：无效状态

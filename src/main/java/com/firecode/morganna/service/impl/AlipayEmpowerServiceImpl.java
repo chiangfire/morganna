@@ -1,13 +1,10 @@
 package com.firecode.morganna.service.impl;
-import java.util.Calendar;
 import java.util.Date;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.request.AlipayOpenAuthTokenAppQueryRequest;
 import com.alipay.api.request.AlipayOpenAuthTokenAppRequest;
@@ -25,7 +22,6 @@ import com.firecode.morganna.repository.AlipayUserRepository;
 import com.firecode.morganna.security.AlipayAuthInfo;
 import com.firecode.morganna.service.AbstractAlipayService;
 import com.firecode.morganna.service.AlipayEmpowerService;
-
 import reactor.core.publisher.Mono;
 
 /**
@@ -102,8 +98,13 @@ public class AlipayEmpowerServiceImpl extends AbstractAlipayService implements A
 		AlipaySystemOauthTokenResponse exchangeAccessToken = this.exchangeAccessToken(authCode, false);
 		AlipayAuthInfo alipayAuthInfo = new AlipayAuthInfo();
 		BeanUtils.copyProperties(exchangeAccessToken, alipayAuthInfo);
+		return this.queryUserEmpowerRecord(alipayAuthInfo.getUserId()).map(alipayEmpowerRecord -> {
+			alipayAuthInfo.setAlipayEmpowerRecord(alipayEmpowerRecord);
+			return alipayAuthInfo;
+		}).defaultIfEmpty(alipayAuthInfo);
+				                                                      
 		//查询用户第三方应用授权记录
-		return this.queryUserEmpowerRecord(alipayAuthInfo.getUserId()).flatMap(alipayEmpowerRecord -> {
+		/*return this.queryUserEmpowerRecord(alipayAuthInfo.getUserId()).flatMap(alipayEmpowerRecord -> {
 			Date currentDate = new Date();
 			//有授权记录并且没有过期
 			if(null != alipayEmpowerRecord && alipayEmpowerRecord.getAuthEnd().after(currentDate)){
@@ -121,7 +122,7 @@ public class AlipayEmpowerServiceImpl extends AbstractAlipayService implements A
 				alipayAuthInfo.setAlipayEmpowerRecord(alipayEmpowerRecord);
 			}
 			return Mono.just(alipayAuthInfo);
-		}).defaultIfEmpty(alipayAuthInfo);
+		}).defaultIfEmpty(alipayAuthInfo);*/
 	}
 	
 	/**

@@ -52,4 +52,5 @@ public class AlipayAuthInfo {
 	 * 第三方应用授权记录
 	 */
 	private AlipayEmpowerRecord alipayEmpowerRecord;
+	
 }
